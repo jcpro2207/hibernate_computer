@@ -12,7 +12,7 @@ class hibernate_class():
     '''
     # hibernate cmd
     def hibernate():
-        subprocess.Popen(['C:/Users/Hp/Desktop/ardui'],shell=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE)
+        subprocess.Popen(['shutdown/h'],shell=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE)
 
     # Create the window
     def create_main_win():
