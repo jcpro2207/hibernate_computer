@@ -49,7 +49,7 @@ class hibernate_class():
                 return None           
 
     # calculate the time end for the thing
-    time_end = datetime.datetime.now() + datetime.timedelta(minutes=0.1)
+    time_end = datetime.datetime.now() + datetime.timedelta(minutes=2)
 
         
     # Display and interact with the Window using an Event Loop
