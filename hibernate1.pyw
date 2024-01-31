@@ -14,6 +14,10 @@ class hibernate_class():
     def hibernate():
         subprocess.Popen(['shutdown/h'],shell=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE)
 
+    # create new time
+    def create_time():
+        return datetime.datetime.now() + datetime.timedelta(minutes=2)
+
     # Create the window
     def create_main_win():
         layout = [[sg.Text("Do you want to hibernate?", size=(30,2), font=("consolas 14"))],
@@ -49,7 +53,7 @@ class hibernate_class():
                 return None           
 
     # calculate the time end for the thing
-    time_end = datetime.datetime.now() + datetime.timedelta(minutes=2)
+    time_end = create_time()
 
         
     # Display and interact with the Window using an Event Loop
@@ -70,15 +74,30 @@ class hibernate_class():
         elif event == "No":
             break
         elif event == "Rescedule":
-            sleep = float(open_window())
+            # try to add float
+            try:    
+                sleep = float(open_window())
+            except:
+                sleep = None
+                pass
+
             # check if empty str
-            if sleep != None or sleep != '' : 
+            if sleep == None or sleep == '': 
+                pass
+            else:
                 window.close()
+                # prevent the window from counting sown to 0
+                time_end = datetime.timedelta(weeks=999)
                 try:
                     time.sleep((sleep*60)-120)
+                    time_end = create_time()
                 except ValueError:
                     time.sleep((sleep*60))
+                    time_end = create_time()
                 window = create_main_win()
+                pass
+
+
         elif m=='00' and s == '00':
             window.close()
             hibernate()
